@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>backend server</title>
+    <title>SocketServer</title>
 </head>
 
 <body>
     <h1>Acceso denegado</h1>
 
     <script src="socket.io/socket.io.js"></script>
+
     <script>
         var socket = io();
 
@@ -20,18 +20,24 @@
         });
 
         socket.on('disconnect', function() {
-            console.log('DESConectado al servidor')
+            console.log('Perdimos comunicación con el servidor');
         });
 
-        //emitir un evento llamado mensaje, despues el payload, conveniente mandar objeto
+
         socket.emit('mensaje', {
-            nombre: 'Alonso'
+            nombre: 'Fernando'
         });
 
-        socket.on('mensaje', function(payload) {
-            console.log('escuchando ', payload);
+        socket.on('nuevo-mensaje', function(payload) {
+            console.log('Escuhando:', payload);
+        });
+
+        socket.on('activeBands', function(bands) {
+            console.clear();
+            console.table(bands);
         });
     </script>
+
 </body>
 
 </html>
