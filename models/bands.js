@@ -20,6 +20,7 @@ class Bands {
         return this.bands;
     }
 
+    ///method for increments votes of bands, by the band ID
     voteBand(id) {
         this.bands = this.bands.map(band => {
             if (band.id == id) {
